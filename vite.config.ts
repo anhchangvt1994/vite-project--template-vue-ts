@@ -53,7 +53,7 @@ export default defineConfig(async ({ mode }) => {
 			...(mode === 'development'
 				? [
 						alias({
-							entries: aliasExternal?.entries ?? {},
+							entries: aliasExternal.entries ?? {},
 						}),
 				  ]
 				: []),

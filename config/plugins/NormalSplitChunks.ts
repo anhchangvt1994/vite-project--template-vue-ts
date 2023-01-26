@@ -22,7 +22,7 @@ export default (splitChunkConfig: Array<string | RegExp>): Plugin => {
 				for (const test of splitChunkConfig) {
 					const moduleInfo = meta.getModuleInfo(id)
 					if (
-						moduleInfo.isIncluded &&
+						moduleInfo?.isIncluded &&
 						((typeof test === 'string' && id.indexOf(test) !== -1) ||
 							(test instanceof RegExp && test.test(id)))
 					) {
