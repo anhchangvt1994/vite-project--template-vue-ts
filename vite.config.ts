@@ -53,7 +53,7 @@ export default defineConfig(async ({ mode }) => {
 			...(mode === 'development'
 				? [
 						alias({
-							entries: aliasExternal?.entries,
+							entries: aliasExternal?.entries ?? {},
 						}),
 				  ]
 				: []),
@@ -82,7 +82,7 @@ export default defineConfig(async ({ mode }) => {
 		optimizeDeps: {
 			...(mode === 'production'
 				? {
-						exclude: Object.keys(aliasExternal.entries ?? {}),
+						exclude: Object.keys(aliasExternal.entries || {}),
 				  }
 				: {}),
 		},
