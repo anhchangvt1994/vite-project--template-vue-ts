@@ -43,7 +43,6 @@ export default defineConfig(async ({ mode }) => {
 				imports: [
 					// presets
 					'vue',
-					'vue-router',
 				],
 				dts: './config/auto-imports.d.ts',
 				eslintrc: {
@@ -87,7 +86,7 @@ export default defineConfig(async ({ mode }) => {
 		optimizeDeps: {
 			...(aliasExternal
 				? {
-						exclude: Object.keys(aliasExternal),
+						exclude: Object.keys(aliasExternal?.entries ?? {}),
 				  }
 				: {}),
 		},
