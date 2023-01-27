@@ -13,7 +13,7 @@
 
 <template>
 	<div class="app">
-		<img src="images/logo.svg" alt="Vue Logo" width="256" height="256" />
+		<img src="/images/logo.svg" alt="Vue Logo" width="256" height="256" />
 		<div class="text-primary greeting-label">{{ greetingContent }}</div>
 		<p className="text-blue counter-label">
 			Page has been open for <code>{{ count }}</code> seconds.
