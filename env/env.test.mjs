@@ -1,6 +1,6 @@
 export default {
-  prefix: "test",
-  data: {
-    data: "test",
-  },
-};
+	prefix: 'test',
+	data: {
+		data: 'test',
+	},
+}

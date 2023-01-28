@@ -40,6 +40,7 @@ export const generateDTS = async function (
 		typeof config.filename !== 'string'
 	)
 		return
+	console.log(JSON.stringify({ env: config.input }))
 	const { lines: tdsGroup } = await quicktypeJSON(
 		'typescript',
 		JSON.stringify({ env: config.input })
