@@ -294,7 +294,7 @@ Note: You can use regex (remember \/([^/]+)) or string to config for NormalSplit
 This configuration is an optional, you can read or ignore it.
 The **ESM External CDN** is a solution used to replace some node_module dependencies by the corresponding ESM module in a CDN hosting.
 
-Imaged that you have a code like this
+Imagine that you have a code like this
 
 ```javascript
 import { ref } from 'vue'
