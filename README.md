@@ -40,8 +40,8 @@ This project is an advanced structure and configuration of scaffolded Vite + Vue
 - [env](#env) - emvironment directory
 - [src](#src) - include assets and coding of project
 - [tailwind.config.cjs](#tailwincss)
-- [vite.config.ts](#vite.config.ts) - unplugin-auto-import config
-- [vite.production.config.ts](#vite.production.config.ts) - NormalSplitChunks config
+- [vite.config.ts](#vite.config.ts) - unplugin-auto-import configuration
+- [vite.production.config.ts](#vite.production.config.ts) - NormalSplitChunks configuration, External configuration
 
 <h3>env</h3>
 
@@ -206,3 +206,118 @@ In case use **publicDir**, you just easy set static files like a string
 
 All of your tailwind config for your project
 [tailwind config docs](https://tailwindcss.com/docs/configuration)
+
+<h3>vite.config.ts</h3>
+
+##### unplugin-auto-import configuration
+
+##### Why use it ?
+
+In the normal, think that if you want to use **ref** in **vue** you have to:
+
+```javascript
+import { ref } from 'vue'
+
+const something = ref(value)
+```
+
+But if you configed auto-import before, you just do like code below. And don't worry about suggestion or wrong linting.
+
+```javascript
+const something = ref(value)
+```
+
+##### How to use it ?
+
+I configed the auto-import into **vite.config.ts**, the syntax of configuration is like this
+
+```javascript
+{
+  plugins: [
+    AutoImport({
+      // targets to transform
+      include: [
+        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+        /\.vue$/,
+        /\.vue\?vue/, // .vue
+        /\.md$/, // .md
+      ],
+      imports: [
+        // presets
+        'vue',
+      ],
+      dts: './config/auto-imports.d.ts',
+      eslintrc: {
+        enabled: true,
+        filepath: './config/.eslintrc-auto-import.json',
+      },
+    }),
+  ],
+}
+```
+
+|   Options    | Description                                                                                                                                                                                                                                                                                                                                                                                 |
+| :----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **include**  | Is list of file extension that will be applied the auto-import                                                                                                                                                                                                                                                                                                                              |
+| **imports**  | Set what dependencies and values will be valid to auto-import, unplugin-auto-import available some popular libs like: vue, react, solid ... [see more](https://github.com/antfu/unplugin-auto-import/tree/main/src/presets) <br /> Another hand, you can custom some of new your auto-import by using [advanced configuration](https://github.com/antfu/unplugin-auto-import#configuration) |
+|   **dts**    | Where you want to place **auto-imports.d.ts** file, this file will support for auto suggestion ability                                                                                                                                                                                                                                                                                      |
+| **eslintrc** | Where you want to place **.eslintrc-auto-import.json** file, this file will support for linting validation                                                                                                                                                                                                                                                                                  |
+
+<h3>vite.production.config.ts</h3>
+##### NormalSplitChunks
+This configuration used to support for splitting chunks of files. This solution help to reduce the file's sizes in loading processes by loading multiple files with smaller sizes.
+
+##### Why use it ?
+
+Reduce file's sizes, can enhance loading resource performance.
+
+Note: Don't use this solution for all cases, because the large amount of file be loaded in the bad internet supporter will make the loading resource process be slower and can be broken.
+
+##### How to use it ?
+
+I configed the NormalSplitChunks into **vite.production.config.ts**, the syntax of configuration is like this
+
+```javaScript
+NormalSplitChunks([
+  /node_modules\/([^/]+)/,
+  /utils\/([^/]+)/,
+  /config\/([^/]+)/
+]),
+```
+
+In this case, I configed to split any files in node_modules, utils and config directories. About pages and components directories you can use **dynamic import** to manual handle split-chunks.
+
+Note: You can use regex (remember \/([^/]+)) or string to config for NormalSplitChunks.
+
+##### ESM External in CDN
+
+This configuration is an optional, you can read or ignore it.
+The **ESM External CDN** is a solution used to replace some node_module dependencies by the corresponding ESM module in a CDN hosting.
+
+Imaged that you have a code like this
+
+```javascript
+import { ref } from 'vue'
+```
+
+The 'vue' is a node_module dependency, you can see that infor in package.json.
+
+![alt text](/src/assets/static/images/development/node-module-dependencies.png 'Title')
+
+After the build tool compiles the file include the import dependencies syntax, the system will print dependency's logic code into owner file or split it into another chunk if you have configed split-chunks for that dependency. But when you define external for that dependency, the system will replace it with the synchronize insert script syntax like split-chunks case, but different about where src="from". In **ESM External CDN** case the src will from CDN hosting.
+
+The configuration syntax like this
+
+```javascript
+{
+  // [key is dependency name]: value is esm cdn url (in this case I use https://esm.sh/)
+  vue: 'https://esm.sh/vue@3.2.45',
+  'vue-router': 'https://esm.sh/vue-router@4.1.6',
+}
+```
+
+You can use below command line to try
+
+```bash
+npm run build:esm
+```

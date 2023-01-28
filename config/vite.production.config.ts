@@ -5,7 +5,13 @@ import NormalSplitChunks from './plugins/NormalSplitChunks'
 export default (): UserConfig => {
 	return {
 		// NOTE - If you want to use Regex please use /...\/([^/]+)/ to split chunks right way
-		plugins: [NormalSplitChunks([/node_modules\/([^/]+)/])],
+		plugins: [
+			NormalSplitChunks([
+				/node_modules\/([^/]+)/,
+				/utils\/([^/]+)/,
+				/config\/([^/]+)/,
+			]),
+		],
 	}
 }
 

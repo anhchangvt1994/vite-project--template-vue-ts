@@ -42,6 +42,9 @@ export default defineConfig(async ({ mode }) => {
 					},
 				},
 			}),
+			EnvironmentPlugin(ENV_OBJECT_DEFAULT as any, {
+				defineOn: 'import.meta.env',
+			}),
 			nodeResolve({
 				modulePaths: resolve.modules,
 			}),
@@ -144,7 +147,7 @@ function resolveTsconfigPathsToAlias(tsconfigPath = './tsconfig.json') {
 				const value = path.resolve(
 					__dirname,
 					baseUrl,
-					pathValues[0].replace(/[\/|\*]+(?:$)/g, '')
+					(pathValues as Array<string>)[0].replace(/[\/|\*]+(?:$)/g, '')
 				)
 				modules.push(value)
 				return [key, value]
