@@ -264,7 +264,9 @@ I configed the auto-import into **vite.config.ts**, the syntax of configuration 
 | **eslintrc** | Where you want to place **.eslintrc-auto-import.json** file, this file will support for linting validation                                                                                                                                                                                                                                                                                  |
 
 <h3>vite.production.config.ts</h3>
+
 ##### NormalSplitChunks
+
 This configuration used to support for splitting chunks of files. This solution help to reduce the file's sizes in loading processes by loading multiple files with smaller sizes.
 
 ##### Why use it ?
