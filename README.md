@@ -10,13 +10,13 @@
 Clone source with SSH url:
 
 ```bash
-git clone git@github.com:anhchangvt1994/vite-project--template-react-ts.git
+git clone git@github.com:anhchangvt1994/vite-project--template-vue-ts.git
 ```
 
 Install:
 
 ```bash
-cd vite-project--template-react-ts
+cd vite-project--template-vue-ts
 ```
 
 If use npm
