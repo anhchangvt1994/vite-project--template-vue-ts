@@ -1,6 +1,6 @@
 module.exports = {
 	root: true,
-	ignorePatterns: ['vite.config.ts', 'env/**/*', 'config/**/*'],
+	ignorePatterns: ['vite.config.ts', 'env/**/*', 'config/**/*', 'dist**/*'],
 	env: {
 		browser: true,
 		es6: true,

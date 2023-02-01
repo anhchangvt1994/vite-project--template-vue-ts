@@ -11,13 +11,7 @@
 		"config/types/ImportMeta.d.ts",
 		"src/static.d.ts"
 	],
-	"include": [
-		"src/**/*.js",
-		"src/**/*.ts",
-		"src/**/*.tsx",
-		"src/**/*.vue",
-		"vite.config.ts"
-	],
+	"include": ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
 	"compilerOptions": {
 		"useDefineForClassFields": true,
 		"lib": ["ESNext", "DOM"],
