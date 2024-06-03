@@ -3,26 +3,30 @@ import { fileURLToPath } from 'url'
 import fs from 'fs'
 
 import ENV_DEFINE_LIST from '../../env/env-register.mjs'
-import ObjToEnvConverter from '../libs/object-to-env-converter.js'
+import ObjToEnvConverter from '../utils/ObjectToEnvConverter'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const PROJECT_PATH = __dirname.replace(/\\/g, '/')
 
+// const PREFIX_LIST = [];
 const ENV_OBJECT_DEFAULT = {
-	PORT: 0,
-	IO_PORT: 0,
-	LOCAL_ADDRESS: '',
-	LOCAL_HOST: '',
-	IPV4_ADDRESS: '',
-	IPV4_HOST: '',
-	IO_HOST: '',
+	PORT: Number(),
+	IO_PORT: Number(),
+	LOCAL_ADDRESS: String(),
+	LOCAL_HOST: String(),
+	IPV4_ADDRESS: String(),
+	IPV4_HOST: String(),
+	IO_HOST: String(),
 }
 const ENV_OBJ_WITH_JSON_STRINGIFY_VALUE = { ...ENV_OBJECT_DEFAULT }
 
 const generateObjectFormatted = (obj, prefix) => {
 	if (!obj || typeof obj !== 'object') return {}
 	prefix = prefix ? prefix.toUpperCase() + '_' : ''
+	// if (!PREFIX_LIST.includes(prefix)) {
+	//   PREFIX_LIST.push(prefix);
+	// }
 
 	for (const key in obj) {
 		let tmpKey = `${prefix}${key.toUpperCase()}`
@@ -83,6 +87,7 @@ const promiseENVWriteFileSync = new Promise(function (resolve) {
 })
 
 export {
+	// PREFIX_LIST,
 	ENV_OBJECT_DEFAULT,
 	ENV_OBJ_WITH_JSON_STRINGIFY_VALUE,
 	promiseENVWriteFileSync,

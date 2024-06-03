@@ -9,8 +9,9 @@ export default (): UserConfig => {
 			NormalSplitChunks([
 				/node_modules\/([^/]+)/,
 				/utils\/([^/]+)/,
+				/composable\/([^/]+)/,
 				/store\/([^/]+)/,
-				/config\/([^/]+)/,
+				/app\/([^/]+)/,
 			]),
 		],
 	}
@@ -20,6 +21,7 @@ export const aliasExternal: RollupAliasOptions = {
 	entries: process.env.ESM
 		? {
 				vue: 'https://esm.sh/vue@3.2.45',
+				'vue-router': 'https://esm.sh/vue-router@4.1.6',
 		  }
 		: {},
 }

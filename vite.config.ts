@@ -14,6 +14,7 @@ import {
 	promiseENVWriteFileSync,
 } from './config/env/env.mjs'
 import { generateDTS } from './config/types/dts-generator.mjs'
+import { getPort } from './config/utils/PortHandler'
 
 const resolve = resolveTsconfigPathsToAlias()
 
@@ -59,8 +60,33 @@ export default defineConfig(async ({ mode }) => {
 				imports: [
 					// presets
 					'vue',
+					{
+						'vue-router': [
+							'createRouter',
+							'createWebHistory',
+							'useRoute',
+							'useRouter',
+						],
+						'utils/StringHelper.ts': [
+							'getSlug',
+							'getSlugWithoutDash',
+							'getUnsignedLetters',
+							'getCustomSlug',
+							'generateTitleCase',
+							'generateSentenceCase',
+						],
+						'composable/useStringHelper.ts': [
+							'useSlug',
+							'useSlugWithoutDash',
+							'useUnsignedLetters',
+							'useTitleCase',
+							'useSentenceCase',
+						],
+						'utils/CookieHelper.ts': ['getCookie', 'setCookie', 'deleteCookie'],
+					},
 				],
 				dts: './config/auto-imports.d.ts',
+				vueTemplate: true,
 				eslintrc: {
 					enabled: true,
 					filepath: './config/.eslintrc-auto-import.json',
@@ -69,7 +95,7 @@ export default defineConfig(async ({ mode }) => {
 			...(mode === 'development'
 				? [
 						alias({
-							entries: aliasExternal.entries ?? {},
+							entries: aliasExternal.entries || {},
 						}),
 				  ]
 				: []),
@@ -94,7 +120,7 @@ export default defineConfig(async ({ mode }) => {
 			},
 		},
 		optimizeDeps: {
-			...(mode === 'production'
+			...(aliasExternal
 				? {
 						exclude: Object.keys(aliasExternal.entries || {}),
 				  }

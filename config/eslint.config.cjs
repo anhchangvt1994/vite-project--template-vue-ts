@@ -1,6 +1,6 @@
 module.exports = {
 	root: true,
-	ignorePatterns: ['vite.config.ts', 'env/**/*', 'config/**/*', 'dist**/*'],
+	ignorePatterns: ['vite.config.ts', 'env/**/*', 'config/**/*', 'dist/**/*'],
 	env: {
 		browser: true,
 		es6: true,
@@ -22,7 +22,7 @@ module.exports = {
 		'plugin:import/warnings',
 		'prettier',
 	],
-	plugins: ['@typescript-eslint/eslint-plugin'],
+	// plugins: ['@typescript-eslint/eslint-plugin'],
 	parser: 'vue-eslint-parser',
 	parserOptions: {
 		parser: {
