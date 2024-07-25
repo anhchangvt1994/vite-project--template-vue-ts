@@ -9,9 +9,13 @@ declare global {
   const DeviceInfo: typeof import('store/ServerStore.ts')['DeviceInfo']
   const EffectScope: typeof import('vue')['EffectScope']
   const EnvironmentInfo: typeof import('store/ServerStore.ts')['EnvironmentInfo']
+  const GENERAL_GREETING: typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['GENERAL_GREETING']
   const LocaleInfo: typeof import('store/ServerStore.ts')['LocaleInfo']
   const LocaleState: typeof import('store/LocaleStore.ts')['LocaleState']
   const ProxyAPI: typeof import('utils/ProxyAPIHelper/index.ts')['ProxyAPI']
+  const ROUTER_NAME_HOME_PAGE: typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['ROUTER_NAME_HOME_PAGE']
+  const ROUTER_PATH_HOME_PAGE: typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['ROUTER_PATH_HOME_PAGE']
+  const TEST_DATA: typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['TEST_DATA']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const createRouter: typeof import('vue-router')['createRouter']
@@ -126,6 +130,10 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly GENERAL_GREETING: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['GENERAL_GREETING']>
+    readonly ROUTER_NAME_HOME_PAGE: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['ROUTER_NAME_HOME_PAGE']>
+    readonly ROUTER_PATH_HOME_PAGE: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['ROUTER_PATH_HOME_PAGE']>
+    readonly TEST_DATA: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['TEST_DATA']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createRouter: UnwrapRef<typeof import('vue-router')['createRouter']>
@@ -200,6 +208,10 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly GENERAL_GREETING: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['GENERAL_GREETING']>
+    readonly ROUTER_NAME_HOME_PAGE: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['ROUTER_NAME_HOME_PAGE']>
+    readonly ROUTER_PATH_HOME_PAGE: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['ROUTER_PATH_HOME_PAGE']>
+    readonly TEST_DATA: UnwrapRef<typeof import('@/config/env/ENV_AUTO_IMPORT.mjs')['TEST_DATA']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
     readonly createRouter: UnwrapRef<typeof import('vue-router')['createRouter']>

@@ -119,6 +119,10 @@
     "encode": true,
     "hashCode": true,
     "getAPIStore": true,
-    "ProxyAPI": true
+    "ProxyAPI": true,
+    "GENERAL_GREETING": true,
+    "ROUTER_NAME_HOME_PAGE": true,
+    "ROUTER_PATH_HOME_PAGE": true,
+    "TEST_DATA": true
   }
 }
